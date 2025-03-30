@@ -29,12 +29,6 @@ Una aplicación web que permite a los usuarios crear salas y compartir su ubicac
 
 Abre () en tu navegador.
 
-
-
-```
-
-## Funcionalidades
-
 ### Autenticación
 - Registro de usuarios
 - Inicio de sesión
