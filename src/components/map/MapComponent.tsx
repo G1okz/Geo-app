@@ -46,6 +46,7 @@ interface MapComponentProps {
   userId: string
   userName: string
   onLocationDelete?: (locationId: string) => void
+  onLocationAdd?: (location: Location) => void
   onBackToRooms?: () => void
 }
 
@@ -76,6 +77,7 @@ export default function MapComponent({
   userId, 
   userName, 
   onLocationDelete,
+  onLocationAdd,
   onBackToRooms 
 }: MapComponentProps) {
   const [isAddingMarker, setIsAddingMarker] = useState(false)
@@ -83,6 +85,12 @@ export default function MapComponent({
   const [markerName, setMarkerName] = useState('')
   const [markerDescription, setMarkerDescription] = useState('')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [localLocations, setLocalLocations] = useState<Location[]>(locations)
+
+  // Actualizar localLocations cuando cambien las locations del prop
+  useEffect(() => {
+    setLocalLocations(locations)
+  }, [locations])
 
   const handleMapClick = (lat: number, lng: number) => {
     if (isAddingMarker) {
@@ -90,8 +98,8 @@ export default function MapComponent({
     }
   }
 
-  // Agrupar ubicaciones por usuario
-  const groupedLocations = locations.reduce((acc, location) => {
+  // Agrupar ubicaciones por usuario usando localLocations en lugar de locations
+  const groupedLocations = localLocations.reduce((acc, location) => {
     if (location.is_custom_marker) {
       acc.customMarkers.push(location)
     } else {
@@ -114,38 +122,25 @@ export default function MapComponent({
     if (!newMarker || !markerName.trim()) return
 
     try {
-      console.log('Intentando añadir marcador con datos:', {
+      const newLocation = {
         room_id: roomId,
         user_id: userId,
         user_name: userName,
         latitude: newMarker.lat,
         longitude: newMarker.lng,
         name: markerName,
-        description: markerDescription,
         is_custom_marker: true,
         timestamp: new Date().toISOString(),
-      })
+      }
 
       const { data, error } = await supabase
         .from('locations')
-        .insert([
-          {
-            room_id: roomId,
-            user_id: userId,
-            user_name: userName,
-            latitude: newMarker.lat,
-            longitude: newMarker.lng,
-            name: markerName,
-            description: markerDescription,
-            is_custom_marker: true,
-            timestamp: new Date().toISOString(),
-          },
-        ])
+        .insert([newLocation])
         .select()
 
       if (error) {
-        console.error('Error de Supabase:', error)
-        throw new Error(`Error al añadir marcador: ${error.message}`)
+        console.error('Error completo de Supabase:', JSON.stringify(error, null, 2))
+        throw new Error(`Error al añadir marcador: ${error.message || 'Error desconocido'}`)
       }
 
       if (!data) {
@@ -154,11 +149,20 @@ export default function MapComponent({
 
       console.log('Marcador añadido exitosamente:', data)
 
+      // Actualizar el estado local inmediatamente
+      setLocalLocations(prevLocations => [...prevLocations, data[0]])
+
+      // Notificar al componente padre sobre el nuevo marcador
+      if (onLocationAdd) {
+        onLocationAdd(data[0])
+      }
+
       // Limpiar el formulario
       setNewMarker(null)
       setMarkerName('')
       setMarkerDescription('')
       setIsAddingMarker(false)
+      setIsMenuOpen(false)
     } catch (error: any) {
       console.error('Error detallado al añadir marcador:', error)
       throw new Error(`Error al añadir marcador: ${error.message || 'Error desconocido'}`)
@@ -174,6 +178,12 @@ export default function MapComponent({
 
       if (error) throw error
 
+      // Actualizar el estado local inmediatamente
+      setLocalLocations(prevLocations => 
+        prevLocations.filter(location => location.id !== locationId)
+      )
+
+      // Notificar al componente padre
       if (onLocationDelete) {
         onLocationDelete(locationId)
       }

@@ -27,7 +27,7 @@ Una aplicación web que permite a los usuarios crear salas y compartir su ubicac
 
 ## Prueba
 
-Abre () en tu navegador.
+Abre https://geolocalization-app.vercel.app/ en tu navegador.
 
 ### Autenticación
 - Registro de usuarios
