@@ -19,9 +19,18 @@ interface LiveMapProps {
   userId: string
   userName: string
   onLocationDelete?: (locationId: string) => void
+  onBackToRooms?: () => void
 }
 
-export default function LiveMap({ locations, userLocation, roomId, userId, userName, onLocationDelete }: LiveMapProps) {
+export default function LiveMap({ 
+  locations, 
+  userLocation, 
+  roomId, 
+  userId, 
+  userName, 
+  onLocationDelete,
+  onBackToRooms 
+}: LiveMapProps) {
   return (
     <MapComponent
       locations={locations}
@@ -30,6 +39,7 @@ export default function LiveMap({ locations, userLocation, roomId, userId, userN
       userId={userId}
       userName={userName}
       onLocationDelete={onLocationDelete}
+      onBackToRooms={onBackToRooms}
     />
   )
 } 

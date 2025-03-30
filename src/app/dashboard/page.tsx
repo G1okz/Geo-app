@@ -258,26 +258,25 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-gray-900">
-              {currentRoom ? currentRoom.name : 'Geolocalización en Tiempo Real'}
-            </h1>
-            <button
-              onClick={async () => {
-                await supabase.auth.signOut()
-                router.push('/')
-              }}
-              className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              Cerrar Sesión
-            </button>
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-500 p-2 rounded-lg">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center sm:text-left">
+                {currentRoom ? currentRoom.name : 'Geo-App'}
+              </h1>
+            </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
         {currentRoom ? (
           <LiveMap 
             locations={locations} 
@@ -286,6 +285,7 @@ export default function DashboardPage() {
             userId={userId || ''}
             userName={userName}
             onLocationDelete={handleLocationDelete}
+            onBackToRooms={handleLeaveRoom}
           />
         ) : (
           <RoomManager 
