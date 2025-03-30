@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Geo-app - Geolocalización en Tiempo Real
 
-## Getting Started
+Una aplicación web que permite a los usuarios crear salas y compartir su ubicación en tiempo real con otros usuarios.
 
-First, run the development server:
+## Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🔐 Autenticación de usuarios con Supabase
+- 🗺️ Visualización de ubicaciones en tiempo real usando OpenStreetMap
+- 👥 Creación y unión a salas mediante códigos únicos
+- 📱 Interfaz responsive para dispositivos móviles
+- 🔄 Actualizaciones en tiempo real usando Supabase Realtime
+
+## Tecnologías Utilizadas
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Supabase (Autenticación y Base de datos)
+- OpenStreetMap con Leaflet
+- React Leaflet
+
+## Requisitos Previos
+
+- Node.js 18 o superior
+- npm o yarn
+- Cuenta en Supabase
+
+## Prueba
+
+Abre () en tu navegador.
+
+
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Autenticación
+- Registro de usuarios
+- Inicio de sesión
+- Cierre de sesión
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Gestión de Salas
+- Creación de salas con códigos únicos
+- Unión a salas existentes
+- Lista de salas creadas
+- Lista de salas a las que perteneces
 
-## Learn More
+### Geolocalización
+- Obtención de ubicación actual
+- Visualización en mapa
+- Actualización en tiempo real
+- Marcadores para cada usuario
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Licencia
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
-## Deploy on Vercel
+## Autor
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Miguel Reyna**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
