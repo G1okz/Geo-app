@@ -171,12 +171,17 @@ export default function MapComponent({
 
   const handleDeleteMarker = async (locationId: string) => {
     try {
+      // Eliminar el marcador de la base de datos
       const { error } = await supabase
         .from('locations')
         .delete()
         .eq('id', locationId)
+        .select()
 
-      if (error) throw error
+      if (error) {
+        console.error('Error al eliminar marcador:', error)
+        throw error
+      }
 
       // Actualizar el estado local inmediatamente
       setLocalLocations(prevLocations => 
@@ -187,6 +192,9 @@ export default function MapComponent({
       if (onLocationDelete) {
         onLocationDelete(locationId)
       }
+
+      // Forzar una actualización del mapa
+      setLocalLocations(prevLocations => [...prevLocations])
     } catch (error) {
       console.error('Error al eliminar marcador:', error)
     }

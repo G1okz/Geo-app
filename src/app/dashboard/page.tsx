@@ -247,7 +247,10 @@ export default function DashboardPage() {
   }
 
   const handleLocationDelete = (locationId: string) => {
-    setLocations((prev) => prev.filter((loc) => loc.id !== locationId))
+    setLocations(prevLocations => {
+      const newLocations = prevLocations.filter(loc => loc.id !== locationId)
+      return newLocations
+    })
   }
 
   const handleLeaveRoom = () => {

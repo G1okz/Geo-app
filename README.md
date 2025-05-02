@@ -44,7 +44,7 @@ Abre https://geolocalization-app.vercel.app/ en tu navegador.
 - Obtención de ubicación actual
 - Visualización en mapa
 - Actualización en tiempo real
-- Marcadores para cada usuario
+- Marcadores para eventos
 
 
 ## Licencia

@@ -51,6 +51,7 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
 
+      // Obtener las membresías de sala del usuario
       const { data: memberships, error: membershipError } = await supabase
         .from('room_members')
         .select('room_id')
@@ -60,6 +61,8 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
 
       if (memberships && memberships.length > 0) {
         const roomIds = memberships.map(m => m.room_id)
+        
+        // Obtener los detalles de las salas
         const { data: rooms, error: roomsError } = await supabase
           .from('rooms')
           .select('*')
@@ -67,10 +70,15 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
           .order('created_at', { ascending: false })
 
         if (roomsError) throw roomsError
+        
+        // Actualizar el estado con las salas unidas
         setJoinedRooms(rooms || [])
+      } else {
+        setJoinedRooms([])
       }
     } catch (error: any) {
       console.error('Error al obtener las salas unidas:', error.message)
+      setError('Error al cargar las salas unidas')
     }
   }
 
@@ -124,6 +132,10 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
     setError(null)
 
     try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) throw new Error('Usuario no autenticado')
+
+      // Buscar la sala por código
       const { data: room, error: joinError } = await supabase
         .from('rooms')
         .select()
@@ -132,6 +144,22 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
 
       if (joinError) throw joinError
 
+      // Registrar al usuario como miembro de la sala
+      const { error: membershipError } = await supabase
+        .from('room_members')
+        .insert([
+          {
+            room_id: room.id,
+            user_id: user.id
+          }
+        ])
+
+      if (membershipError) throw membershipError
+
+      // Actualizar la lista de salas unidas
+      await fetchJoinedRooms()
+
+      // Unirse a la sala
       onJoinRoom(room.id)
     } catch (error: any) {
       setError(error.message || 'Error al unirse a la sala')
@@ -214,7 +242,7 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
             <h3 className="text-xl font-semibold text-gray-700 mb-2">{currentRoom.name}</h3>
             <div className="flex items-center space-x-2 mb-4">
               <span className="text-sm font-medium text-gray-500">Código:</span>
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-mono text-sm">
+              <span className="px-3 py-1 bg-yellow-200 text-black rounded-full font-mono text-sm font-bold">
                 {currentRoom.code}
               </span>
             </div>
