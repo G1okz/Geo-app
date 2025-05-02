@@ -242,7 +242,7 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
             <h3 className="text-xl font-semibold text-gray-700 mb-2">{currentRoom.name}</h3>
             <div className="flex items-center space-x-2 mb-4">
               <span className="text-sm font-medium text-gray-500">Código:</span>
-              <span className="px-3 py-1 bg-yellow-200 text-black rounded-full font-mono text-sm font-bold">
+              <span className="px-3 py-1 bg-gray-100 text-black rounded-full font-mono text-sm font-bold">
                 {currentRoom.code}
               </span>
             </div>
@@ -347,7 +347,7 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
                       <div className="flex justify-between items-center">
                         <div>
                           <h4 className="font-medium text-gray-800 text-sm sm:text-base">{room.name}</h4>
-                          <p className="text-xs sm:text-sm text-gray-500">Código: {room.code}</p>
+                          <p className="text-xs sm:text-sm text-black font-medium">Código: {room.code}</p>
                         </div>
                         <div className="flex gap-2">
                           <button
@@ -410,7 +410,7 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
                       <div className="flex justify-between items-center">
                         <div>
                           <h4 className="font-medium text-gray-800 text-sm sm:text-base">{room.name}</h4>
-                          <p className="text-xs sm:text-sm text-gray-500">Código: {room.code}</p>
+                          <p className="text-xs sm:text-sm text-black font-medium">Código: {room.code}</p>
                         </div>
                         <button
                           onClick={() => onJoinRoom(room.id)}
