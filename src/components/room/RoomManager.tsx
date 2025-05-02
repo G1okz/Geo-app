@@ -176,7 +176,15 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
     setError(null)
 
     try {
-      // Primero eliminar todas las ubicaciones asociadas a la sala
+      // Primero eliminar todos los miembros de la sala
+      const { error: deleteMembersError } = await supabase
+        .from('room_members')
+        .delete()
+        .eq('room_id', targetRoomId)
+
+      if (deleteMembersError) throw deleteMembersError
+
+      // Luego eliminar todas las ubicaciones asociadas a la sala
       const { error: deleteLocationsError } = await supabase
         .from('locations')
         .delete()
@@ -184,7 +192,7 @@ export default function RoomManager({ onJoinRoom, currentRoom, userId, onLeaveRo
 
       if (deleteLocationsError) throw deleteLocationsError
 
-      // Luego eliminar la sala
+      // Finalmente eliminar la sala
       const { error: deleteRoomError } = await supabase
         .from('rooms')
         .delete()
