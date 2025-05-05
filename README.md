@@ -1,57 +1,107 @@
-# Geo-app - Geolocalización en Tiempo Real
+# Geo-App 🌍
 
-Una aplicación web que permite a los usuarios crear salas y compartir su ubicación en tiempo real con otros usuarios.
+Geo-App es una aplicación web moderna para compartir ubicación en tiempo real con grupos. Desarrollada con Next.js, TypeScript y Supabase, ofrece una experiencia intuitiva y segura para coordinar la ubicación de múltiples usuarios.
 
-## Características
+## Características Principales ✨
 
-- 🔐 Autenticación de usuarios con Supabase
-- 🗺️ Visualización de ubicaciones en tiempo real usando OpenStreetMap
-- 👥 Creación y unión a salas mediante códigos únicos
-- 📱 Interfaz responsive para dispositivos móviles
-- 🔄 Actualizaciones en tiempo real usando Supabase Realtime
+- 🚀 Compartir ubicación en tiempo real
+- 👥 Gestión de grupos y salas virtuales
+- 🔒 Sistema de autenticación seguro
+- 🗺️ Visualización en mapa interactivo
+- 📱 Diseño responsivo
+- 🔐 Control de privacidad por sala
 
-## Tecnologías Utilizadas
+## Tecnologías Utilizadas 🛠️
 
-- Next.js 14
-- TypeScript
-- Tailwind CSS
-- Supabase (Autenticación y Base de datos)
-- OpenStreetMap con Leaflet
-- React Leaflet
+- **Frontend:**
+  - Next.js 14
+  - TypeScript
+  - Tailwind CSS
+  - React Leaflet
 
-## Requisitos Previos
+- **Backend:**
+  - Supabase
+  - PostgreSQL
+  - API REST
 
-- Node.js 18 o superior
+## Requisitos Previos 📋
+
+- Node.js 18.0.0 o superior
 - npm o yarn
 - Cuenta en Supabase
 
-## Prueba
+## Instalación 🚀
 
-Abre https://geolocalization-app.vercel.app/ en tu navegador.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/geo-app.git
+   cd geo-app
+   ```
 
-### Autenticación
-- Registro de usuarios
-- Inicio de sesión
-- Cierre de sesión
+2. Instala las dependencias:
+   ```bash
+   npm install
+   # o
+   yarn install
+   ```
 
-### Gestión de Salas
-- Creación de salas con códigos únicos
-- Unión a salas existentes
-- Lista de salas creadas
-- Lista de salas a las que perteneces
+3. Configura las variables de entorno:
+   Crea un archivo `.env.local` en la raíz del proyecto con:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
+   ```
 
-### Geolocalización
-- Obtención de ubicación actual
-- Visualización en mapa
-- Actualización en tiempo real
-- Marcadores para eventos
+4. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   # o
+   yarn dev
+   ```
+
+5. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+## Estructura del Proyecto 📁
+
+```
+geo-app/
+├── src/
+│   ├── app/              # Rutas de la aplicación
+│   ├── components/       # Componentes React
+│   ├── lib/             # Utilidades y configuraciones
+│   ├── types/           # Definiciones de TypeScript
+│   └── styles/          # Estilos globales
+├── public/              # Archivos estáticos
+└── package.json         # Dependencias y scripts
+```
+
+## Uso 🎯
+
+1. **Registro y Autenticación**
+   - Crea una cuenta o inicia sesión
+
+2. **Gestión de Salas**
+   - Crea una nueva sala
+   - Invita a otros usuarios
+
+3. **Compartir Ubicación**
+   - Únete a una sala existente
+   - Activa el compartir ubicación
+   - Visualiza las ubicaciones en el mapa
+
+4. **Personalización**
+   - Personaliza los marcadores del mapa
+
+## Contribución 🤝
+
+Las contribuciones son bienvenidas.
+
+## Licencia 📄
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
 
-## Licencia
+---
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## Autor
-
-- **Miguel Reyna**
+Desarrollado con ❤️ por [Miguel Reyna]
 
