@@ -54,11 +54,12 @@ export default function AuthPage() {
       // Primero crear la cuenta de autenticación con la contraseña original
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
-        password, // Usar la contraseña original, no la hasheada
+        password,
         options: {
           data: {
             username,
           },
+          emailRedirectTo: `${window.location.origin}/verification-success`,
         },
       })
 
@@ -83,7 +84,13 @@ export default function AuthPage() {
 
       if (userError) throw userError
 
-      router.push('/dashboard')
+      setError('¡Registro exitoso! Por favor, verifica tu correo electrónico para activar tu cuenta.')
+      setActiveTab('login')
+      // Limpiar los campos del formulario
+      setEmail('')
+      setUsername('')
+      setPassword('')
+      setConfirmPassword('')
     } catch (error: any) {
       setError(error.message)
     } finally {
