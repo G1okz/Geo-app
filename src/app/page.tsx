@@ -138,139 +138,148 @@ export default function AuthPage() {
               </div>
             )}
 
-            {activeTab === 'login' ? (
-              <form onSubmit={handleLogin} className="space-y-6">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white">
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
-                      required
-                      autoComplete="off"
-                      placeholder="tu@email.com"
-                    />
+            <div className="relative">
+              <div className={`transition-all duration-300 ease-in-out ${activeTab === 'login' ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full absolute'}`}>
+                <form onSubmit={handleLogin} className="space-y-6">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-white">
+                      Email
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
+                        required
+                        autoComplete="off"
+                        placeholder="tu@email.com"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-white">
-                    Contraseña
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      id="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
-                      required
-                      autoComplete="off"
-                      placeholder="••••••••"
-                    />
+                  <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-white">
+                      Contraseña
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
+                        required
+                        autoComplete="off"
+                        placeholder="••••••••"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition-colors duration-200"
-                  >
-                    {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <form onSubmit={handleRegister} className="space-y-6">
-                <div>
-                  <label htmlFor="register-email" className="block text-sm font-medium text-white">
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      id="register-email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
-                      required
-                      autoComplete="off"
-                      placeholder="tu@email.com"
-                    />
+                  <div>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition-colors duration-200"
+                    >
+                      {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+                    </button>
                   </div>
-                </div>
+                </form>
+              </div>
+              <div className={`transition-all duration-300 ease-in-out ${activeTab === 'register' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full absolute'}`}>
+                <form onSubmit={handleRegister} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                      <div>
+                        <label htmlFor="register-email" className="block text-sm font-medium text-white">
+                          Email
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id="register-email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
+                            required
+                            autoComplete="off"
+                            placeholder="tu@email.com"
+                          />
+                        </div>
+                      </div>
 
-                <div>
-                  <label htmlFor="username" className="block text-sm font-medium text-white">
-                    Nombre de usuario
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      id="username"
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
-                      required
-                      autoComplete="off"
-                      placeholder="usuario123"
-                    />
+                      <div>
+                        <label htmlFor="username" className="block text-sm font-medium text-white">
+                          Nombre de usuario
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id="username"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
+                            required
+                            autoComplete="off"
+                            placeholder="usuario123"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div>
+                        <label htmlFor="register-password" className="block text-sm font-medium text-white">
+                          Contraseña
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id="register-password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
+                            required
+                            autoComplete="off"
+                            placeholder="••••••••"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label htmlFor="confirm-password" className="block text-sm font-medium text-white">
+                          Confirmar Contraseña
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id="confirm-password"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
+                            required
+                            autoComplete="off"
+                            placeholder="••••••••"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="register-password" className="block text-sm font-medium text-white">
-                    Contraseña
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      id="register-password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
-                      required
-                      autoComplete="off"
-                      placeholder="••••••••"
-                    />
+                  <div>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition-colors duration-200"
+                    >
+                      {loading ? 'Registrando...' : 'Registrarse'}
+                    </button>
                   </div>
-                </div>
-
-                <div>
-                  <label htmlFor="confirm-password" className="block text-sm font-medium text-white">
-                    Confirmar Contraseña
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      id="confirm-password"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      className="appearance-none block w-full px-3 py-2 border border-white/20 rounded-md shadow-sm bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 sm:text-sm transition-colors duration-200"
-                      required
-                      autoComplete="off"
-                      placeholder="••••••••"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition-colors duration-200"
-                  >
-                    {loading ? 'Registrando...' : 'Registrarse'}
-                  </button>
-                </div>
-              </form>
-            )}
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
