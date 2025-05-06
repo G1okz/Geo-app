@@ -36,7 +36,7 @@ Podeis probar la aplicación web directamente desde el siguiente enlace: https:/
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/geo-app.git
+   git clone https://github.com/g1okz/geo-app.git
    cd geo-app
    ```
 
