@@ -2,6 +2,8 @@
 
 Geo-App es una aplicación web moderna para compartir ubicación en tiempo real con grupos. Desarrollada con Next.js, TypeScript y Supabase, ofrece una experiencia intuitiva y segura para coordinar la ubicación de múltiples usuarios.
 
+Podeis probar la aplicación web directamente desde el siguiente enlace: https://geolocalization-app.vercel.app/
+
 ## Características Principales ✨
 
 - 🚀 Compartir ubicación en tiempo real
